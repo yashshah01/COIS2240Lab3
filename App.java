@@ -29,7 +29,25 @@ public class App extends JFrame {
          * 5-Add an action listener to the button that calls the load CSV function (below)
          * 6-Play around with coloring and styling to make your application look more professional
          */
+
+         JButton loadButton = new JButton("LoadCSV");
+
+         textArea = new JTextArea();
+
+         textArea.setEditable(false);
+
+         JScrollPane scrollPane = new JScrollPane(textArea);
+
+         loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                loadCsv("path/to/csvfile.csv");
+            }
+         });
         
+         textArea.setBackground(Color.BLUE);
+         loadButton.setBackground(Color.BLACK);
+         loadButton.setForeground(Color.WHITE);
 
         add(loadButton, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
