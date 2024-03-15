@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +43,17 @@ public class App extends JFrame {
          loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                loadCsv("path/to/csvfile.csv");
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Set a CSV file");
+                fileChooser.setFileFilter(null);
+                FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
+                fileChooser.setFileFilter(fileFilter);
+                int filepath = fileChooser.showOpenDialog(null);
+                if(filepath == JFileChooser.APPROVE_OPTION){
+                    String selectedfilepath = fileChooser.getSelectedFile().getAbsolutePath();
+                    loadCsv(selectedfilepath);
+                }
+                
             }
          });
         
