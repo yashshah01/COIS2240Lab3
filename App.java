@@ -17,7 +17,7 @@ public class App extends JFrame {
     public App() {
         // JFrame settings
         //Setting Title
-        setTitle("Your Name's CSV Loader Application");
+        setTitle("Yash Shah's CSV Loader Application");
         //Setting Dimensions of Window
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,13 +43,16 @@ public class App extends JFrame {
          loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
+                // used JfileChoose to allow the user to select a file
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setDialogTitle("Set a CSV file");
                 fileChooser.setFileFilter(null);
-                FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-                fileChooser.setFileFilter(fileFilter);
+                // This will only allow the user to choose only CSV files
+                FileNameExtensionFilter fFilter = new FileNameExtensionFilter("CSV Files", "csv");
+                fileChooser.setFileFilter(fFilter);
                 int filepath = fileChooser.showOpenDialog(null);
                 if(filepath == JFileChooser.APPROVE_OPTION){
+                    // use the selected filepath and load it here
                     String selectedfilepath = fileChooser.getSelectedFile().getAbsolutePath();
                     loadCsv(selectedfilepath);
                 }
